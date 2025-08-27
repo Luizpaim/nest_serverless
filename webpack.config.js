@@ -8,28 +8,15 @@ module.exports = {
     externals: [
         nodeExternals({
             allowlist: [
-                // Dependências que devem ser incluídas no bundle (copiado do projeto que funciona)
-                '@aws-sdk/client-dynamodb',
-                '@aws-sdk/lib-dynamodb',
-                '@fastify/aws-lambda',
-                '@fastify/static',
-                '@nestjs/axios',
-                '@nestjs/common',
-                '@nestjs/config',
-                '@nestjs/core',
-                '@nestjs/platform-fastify',
-                'class-transformer',
-                'class-validator',
-                'reflect-metadata',
-                'rxjs',
-                // Dependências críticas auxiliares
-                'tslib',
-                'uid',
-                'iterare',
-                'path-to-regexp',
+                // Manter apenas dependências muito pequenas no bundle
+                // AWS-buslayer mantém allowlist vazio - vamos espelhar
             ],
         }),
-        // Módulos nativos do Node.js
+        // AWS SDK - manter externo para reduzir bundle size (igual AWS-buslayer)
+        '@aws-sdk/client-dynamodb',
+        '@aws-sdk/lib-dynamodb',
+        // Módulos nativos do Node.js - explicitamente externos
+        'aws-lambda',
         'crypto',
         'fs',
         'path',
@@ -67,11 +54,6 @@ module.exports = {
         'inspector',
         'trace_events',
         'async_hooks',
-        // Dependências opcionais que não estão instaladas
-        '@nestjs/websockets/socket-module',
-        '@nestjs/microservices/microservices-module',
-        '@nestjs/microservices',
-        '@fastify/view',
     ],
     mode: 'production',
     resolve: {

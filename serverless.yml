@@ -32,6 +32,9 @@ provider:
 
 functions: ${file(ymls/functions.yml)}
 
+build:
+    esbuild: false
+
 package:
     individually: true
     excludeDevDependencies: true

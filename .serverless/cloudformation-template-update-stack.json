@@ -183,7 +183,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-nest-roles-api/dev/1756283385508-2025-08-27T08:29:45.508Z/nestRolesApi.zip"
+          "S3Key": "serverless/aws-nest-roles-api/dev/1756285417813-2025-08-27T09:03:37.813Z/nestRolesApi.zip"
         },
         "Handler": "dist/main.handler",
         "Runtime": "nodejs20.x",
@@ -210,14 +210,14 @@
         "NestRolesApiLogGroup"
       ]
     },
-    "NestRolesApiLambdaVersionRIftFB3RORKpKYBTsZv1GiV6F1VoI8gzQOSpINJMjQA": {
+    "NestRolesApiLambdaVersionQc9jxcrasYVnpvFgpnZjBueF0NvPCDGnyMmYhjzO9c": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "NestRolesApiLambdaFunction"
         },
-        "CodeSha256": "FdjXFOKJNrhaqhgtLVMAI3lBituJgNBS0mRf+JR8GYc="
+        "CodeSha256": "LIAycaWYOulFc+l7zYzaLWnAOkQz4G2kDyDNhl/y79M="
       }
     },
     "ApiGatewayRestApi": {
@@ -435,7 +435,7 @@
         "NestRolesApiLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1756283376370": {
+    "ApiGatewayDeployment1756285413022": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -500,7 +500,7 @@
     "NestRolesApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "NestRolesApiLambdaVersionRIftFB3RORKpKYBTsZv1GiV6F1VoI8gzQOSpINJMjQA"
+        "Ref": "NestRolesApiLambdaVersionQc9jxcrasYVnpvFgpnZjBueF0NvPCDGnyMmYhjzO9c"
       },
       "Export": {
         "Name": "sls-aws-nest-roles-api-dev-NestRolesApiLambdaFunctionQualifiedArn"
