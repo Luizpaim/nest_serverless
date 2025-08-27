@@ -1,0 +1,74 @@
+service: aws-nest-roles-api
+
+useDotenv: true
+
+plugins:
+    - serverless-esbuild
+
+provider:
+    name: aws
+    runtime: nodejs20.x
+    timeout: 30
+    environment: ${file(ymls/environment.yml)}
+    region: ${env:AWS_REGION, 'sa-east-1'}
+    iam:
+        role:
+            statements:
+                - Effect: Allow
+                  Action:
+                      - dynamodb:ListTables
+                  Resource: '*'
+                - Effect: Allow
+                  Action:
+                      - dynamodb:CreateTable
+                      - dynamodb:DescribeTable
+                      - dynamodb:PutItem
+                      - dynamodb:GetItem
+                      - dynamodb:UpdateItem
+                      - dynamodb:DeleteItem
+                      - dynamodb:Query
+                      - dynamodb:Scan
+                  Resource: '*'
+
+functions: ${file(ymls/functions.yml)}
+
+package:
+    individually: true
+    excludeDevDependencies: true
+    patterns:
+        - '!**/*.spec.ts'
+        - '!**/*.test.ts'
+        - '!**/*.map'
+        - '!**/__tests__/**'
+        - '!**/README.md'
+        - '!**/tsconfig*.json'
+        - '!**/.env*'
+        - '!**/jest.config.js'
+        - '!**/*.d.ts'
+
+custom:
+    esbuild:
+        bundle: true
+        minify: true
+        sourcemap: false
+        external:
+            - aws-sdk
+            - '@aws-sdk/*'
+            - cache-manager
+            - '@nestjs/microservices'
+            - '@nestjs/microservices/microservices-module'
+            - '@nestjs/websockets/socket-module'
+            - '@nestjs/platform-express'
+            - '@fastify/view'
+        target: node20
+        platform: node
+        concurrency: 4
+        define:
+            'process.env.NODE_ENV': '"production"'
+        treeShaking: true
+        minifyIdentifiers: true
+        minifySyntax: true
+        minifyWhitespace: true
+        keepNames: false
+        legalComments: 'none'
+        format: cjs

@@ -1,0 +1,335 @@
+{
+    "info": {
+        "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "name": "Roles API - NestJS DynamoDB",
+        "description": "Collection para testar API de Roles com NestJS e DynamoDB",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "12345678"
+    },
+    "item": [
+        {
+            "name": "📋 Listar todas as Roles",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/roles",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["roles"]
+                },
+                "description": "Retorna todas as roles com paginação opcional"
+            },
+            "response": []
+        },
+        {
+            "name": "📋 Listar Roles com Paginação",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/roles?limit=10",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["roles"],
+                    "query": [
+                        {
+                            "key": "limit",
+                            "value": "10"
+                        }
+                    ]
+                },
+                "description": "Retorna roles com limite de 10 itens"
+            },
+            "response": []
+        },
+        {
+            "name": "✅ Listar Roles Ativas",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/roles/active",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["roles", "active"]
+                },
+                "description": "Retorna apenas roles ativas (isActive = true)"
+            },
+            "response": []
+        },
+        {
+            "name": "➕ Criar Role - Admin",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"Admin\",\n    \"description\": \"Administrador do sistema com acesso total\",\n    \"permissions\": [\"read\", \"write\", \"delete\", \"admin\"],\n    \"isActive\": true\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/roles",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["roles"]
+                },
+                "description": "Cria uma nova role Admin com todas as permissões"
+            },
+            "response": []
+        },
+        {
+            "name": "➕ Criar Role - Manager",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"Manager\",\n    \"description\": \"Gerente com permissões de leitura e escrita\",\n    \"permissions\": [\"read\", \"write\"],\n    \"isActive\": true\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/roles",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["roles"]
+                },
+                "description": "Cria uma role Manager com permissões limitadas"
+            },
+            "response": []
+        },
+        {
+            "name": "➕ Criar Role - User",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"User\",\n    \"description\": \"Usuário padrão com permissão apenas de leitura\",\n    \"permissions\": [\"read\"]\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/roles",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["roles"]
+                },
+                "description": "Cria uma role User básica (isActive será true por padrão)"
+            },
+            "response": []
+        },
+        {
+            "name": "🔍 Buscar Role por ID",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/roles/{{roleId}}",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["roles", "{{roleId}}"]
+                },
+                "description": "Busca uma role específica pelo ID. Configure a variável 'roleId' com um ID válido."
+            },
+            "response": []
+        },
+        {
+            "name": "✏️ Atualizar Role",
+            "request": {
+                "method": "PATCH",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"description\": \"Administrador do sistema - ATUALIZADO\",\n    \"permissions\": [\"read\", \"write\", \"delete\", \"admin\", \"manage_users\"]\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/roles/{{roleId}}",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["roles", "{{roleId}}"]
+                },
+                "description": "Atualiza os dados de uma role existente. Configure a variável 'roleId'."
+            },
+            "response": []
+        },
+        {
+            "name": "🟢 Ativar Role",
+            "request": {
+                "method": "PATCH",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/roles/{{roleId}}/activate",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["roles", "{{roleId}}", "activate"]
+                },
+                "description": "Ativa uma role (define isActive = true). Configure a variável 'roleId'."
+            },
+            "response": []
+        },
+        {
+            "name": "🔴 Desativar Role",
+            "request": {
+                "method": "PATCH",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/roles/{{roleId}}/deactivate",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["roles", "{{roleId}}", "deactivate"]
+                },
+                "description": "Desativa uma role (define isActive = false). Configure a variável 'roleId'."
+            },
+            "response": []
+        },
+        {
+            "name": "🗑️ Deletar Role",
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/roles/{{roleId}}",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["roles", "{{roleId}}"]
+                },
+                "description": "Remove permanentemente uma role do sistema. Configure a variável 'roleId'."
+            },
+            "response": []
+        },
+        {
+            "name": "❌ Teste Erro - Role Duplicada",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"Admin\",\n    \"description\": \"Tentativa de criar role duplicada\",\n    \"permissions\": [\"read\"]\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/roles",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["roles"]
+                },
+                "description": "Testa criação de role com nome duplicado (deve retornar erro 409)"
+            },
+            "response": []
+        },
+        {
+            "name": "❌ Teste Erro - Role Não Encontrada",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/roles/invalid-id",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["roles", "invalid-id"]
+                },
+                "description": "Testa busca por ID inválido (deve retornar erro 404)"
+            },
+            "response": []
+        },
+        {
+            "name": "❌ Teste Validação - Dados Inválidos",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"\",\n    \"description\": \"\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/roles",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["roles"]
+                },
+                "description": "Testa validação com dados vazios (deve retornar erro 400)"
+            },
+            "response": []
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [""]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [""]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "http://localhost:3000",
+            "type": "string"
+        },
+        {
+            "key": "roleId",
+            "value": "cole-aqui-um-id-valido",
+            "type": "string"
+        }
+    ]
+}
