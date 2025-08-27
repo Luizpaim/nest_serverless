@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
-import { DynamoDbService } from '../../shared/infra/database/dynamoDb/dynamodb.service'
-import { Role } from './schemas/role.schema'
-import { CreateRoleDto } from './dto/create-role.dto'
-import { UpdateRoleDto } from './dto/update-role.dto'
+import { DynamoDbService } from '../../../shared/infra/database/dynamoDb/dynamodb.service'
+import { Role } from '../schemas/role.schema'
+import { CreateRoleDto } from '../dto/create-role.dto'
+import { UpdateRoleDto } from '../dto/update-role.dto'
 
 @Injectable()
 export class RolesRepository {

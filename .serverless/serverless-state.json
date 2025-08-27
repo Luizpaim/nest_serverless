@@ -215,7 +215,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-nest-roles-api/dev/1756285417813-2025-08-27T09:03:37.813Z/nestRolesApi.zip"
+                "S3Key": "serverless/aws-nest-roles-api/dev/1756297344311-2025-08-27T12:22:24.311Z/nestRolesApi.zip"
               },
               "Handler": "dist/main.handler",
               "Runtime": "nodejs20.x",
@@ -242,14 +242,14 @@
               "NestRolesApiLogGroup"
             ]
           },
-          "NestRolesApiLambdaVersionQc9jxcrasYVnpvFgpnZjBueF0NvPCDGnyMmYhjzO9c": {
+          "NestRolesApiLambdaVersionXheRPHwAMVprPiFcmfiXb6BVP64hciL9pS8ZjLyY": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "NestRolesApiLambdaFunction"
               },
-              "CodeSha256": "LIAycaWYOulFc+l7zYzaLWnAOkQz4G2kDyDNhl/y79M="
+              "CodeSha256": "4BHW2oT086XhqDp0ev2Z9yECkTRUJ1oVBQLt7CPR63U="
             }
           },
           "ApiGatewayRestApi": {
@@ -467,7 +467,7 @@
               "NestRolesApiLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1756285413022": {
+          "ApiGatewayDeployment1756297340139": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -532,7 +532,7 @@
           "NestRolesApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "NestRolesApiLambdaVersionQc9jxcrasYVnpvFgpnZjBueF0NvPCDGnyMmYhjzO9c"
+              "Ref": "NestRolesApiLambdaVersionXheRPHwAMVprPiFcmfiXb6BVP64hciL9pS8ZjLyY"
             },
             "Export": {
               "Name": "sls-aws-nest-roles-api-dev-NestRolesApiLambdaFunctionQualifiedArn"
@@ -747,7 +747,7 @@
         "memory": 512,
         "runtime": "nodejs20.x",
         "vpc": {},
-        "versionLogicalId": "NestRolesApiLambdaVersionQc9jxcrasYVnpvFgpnZjBueF0NvPCDGnyMmYhjzO9c"
+        "versionLogicalId": "NestRolesApiLambdaVersionXheRPHwAMVprPiFcmfiXb6BVP64hciL9pS8ZjLyY"
       }
     },
     "configValidationMode": "warn",
@@ -792,7 +792,7 @@
   },
   "package": {
     "individually": true,
-    "artifactDirectoryName": "serverless/aws-nest-roles-api/dev/1756285417813-2025-08-27T09:03:37.813Z",
+    "artifactDirectoryName": "serverless/aws-nest-roles-api/dev/1756297344311-2025-08-27T12:22:24.311Z",
     "artifact": ""
   }
 }

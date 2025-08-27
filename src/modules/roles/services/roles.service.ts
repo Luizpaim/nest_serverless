@@ -3,10 +3,10 @@ import {
     NotFoundException,
     ConflictException,
 } from '@nestjs/common'
-import { RolesRepository } from './roles.repository'
-import { CreateRoleDto } from './dto/create-role.dto'
-import { UpdateRoleDto } from './dto/update-role.dto'
-import { Role } from './schemas/role.schema'
+import { RolesRepository } from '../repository/roles.repository'
+import { CreateRoleDto } from '../dto/create-role.dto'
+import { UpdateRoleDto } from '../dto/update-role.dto'
+import { Role } from '../schemas/role.schema'
 
 @Injectable()
 export class RolesService {

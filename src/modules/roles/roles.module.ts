@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
-import { RolesService } from './roles.service'
-import { RolesController } from './roles.controller'
-import { RolesRepository } from './roles.repository'
+import { RolesService } from './services/roles.service'
+import { RolesController } from './controllers/roles.controller'
+import { RolesRepository } from './repository/roles.repository'
 import { DynamoDbModule } from '../../shared/infra/database/dynamoDb/dynamodb.module'
 
 @Module({

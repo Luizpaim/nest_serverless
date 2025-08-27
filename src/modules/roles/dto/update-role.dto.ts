@@ -8,6 +8,7 @@ import {
 } from 'class-validator'
 
 export class UpdateRoleDto implements Record<string, unknown> {
+    [key: string]: unknown
     @IsOptional()
     @IsString()
     @MinLength(1)
